@@ -1,13 +1,9 @@
 import express from "express";
+import productsRouter from "./routes/products.js";
 
 const app = express();
-const PORT = 5000;
+app.use(express.json());
 
-// Test route
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from Express!" });
-});
+app.use("/api/products", productsRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+app.listen(5000, () => console.log("Server running on http://localhost:5000"));

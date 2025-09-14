@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { clearOrder } from "../store/workOrderSlice";
+import { removeWorkOrder, clearWorkOrder } from "../store/workOrderSlice";
 import { useState } from "react";
 
 export default function WorkOrderForm() {
@@ -10,24 +10,31 @@ export default function WorkOrderForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`Work order submitted for ${form.name} (${form.email})`);
-    dispatch(clearOrder());
+    dispatch(clearWorkOrder());
     setForm({ name: "", email: "" });
   };
 
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">Submit Work Order</h1>
+
       {items.length === 0 ? (
-        <p className="text-gray-600">No services selected yet.</p>
+        <p className="text-gray-600 dark:text-gray-400">No services selected yet.</p>
       ) : (
         <ul className="mb-6 space-y-2">
           {items.map((item) => (
             <li
               key={item.id}
-              className="flex justify-between bg-white p-3 rounded-lg shadow"
+              className="flex justify-between items-center bg-white dark:bg-gray-800 p-3 rounded-lg shadow"
             >
               <span>{item.name}</span>
               <span className="font-medium">${item.price}</span>
+              <button
+                onClick={() => dispatch(removeWorkOrder(item.id))}
+                className="ml-4 px-2 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition"
+              >
+                Remove
+              </button>
             </li>
           ))}
         </ul>
@@ -39,7 +46,7 @@ export default function WorkOrderForm() {
           placeholder="Your Name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="w-full p-3 border rounded-lg"
+          className="w-full p-3 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-600"
           required
         />
         <input
@@ -47,12 +54,12 @@ export default function WorkOrderForm() {
           placeholder="Your Email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
-          className="w-full p-3 border rounded-lg"
+          className="w-full p-3 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-600"
           required
         />
         <button
           type="submit"
-          className="w-full px-4 py-3 rounded-lg bg-green-600 text-white hover:bg-green-700"
+          className="w-full px-4 py-3 rounded-lg bg-green-600 text-white hover:bg-green-700 transition"
         >
           Submit
         </button>

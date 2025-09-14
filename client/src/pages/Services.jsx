@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-
+import { addWorkOrder } from "../store/workOrderSlice"; // make sure this import exists
 
 export default function Services() {
   const services = useSelector((state) => state.services.items);
@@ -17,12 +17,16 @@ export default function Services() {
             <h2 className="text-xl font-semibold">{service.name}</h2>
             <p className="text-gray-600">{service.description}</p>
             <p className="mt-2 font-bold">${service.price}</p>
-            <button
-              onClick={() => dispatch(addItem(service))}
-              className="mt-4 px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700"
-            >
-              Add to Work Order
-            </button>
+
+            {/* Center the button */}
+            <div className="flex justify-center mt-6">
+              <button
+                onClick={() => dispatch(addWorkOrder(service))}
+                className="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700"
+              >
+                More Info
+              </button>
+            </div>
           </div>
         ))}
       </div>

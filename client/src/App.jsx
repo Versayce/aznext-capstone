@@ -8,7 +8,7 @@ export default function App() {
     <>
       <Navbar />
 
-      <main className="min-h-screen p-6 bg-gray-50 text-gray-900">
+      <main className="min-h-screen p-4 sm:p-6 md:p-8 bg-gray-50 text-gray-900 md:mx-4 lg:mx-8">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />

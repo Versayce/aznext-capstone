@@ -1,9 +1,24 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addWorkOrder } from "../store/workOrderSlice"; // make sure this import exists
+import { fetchServices } from "../store/serviceSlice";
 
 export default function Services() {
-  const services = useSelector((state) => state.services.items);
   const dispatch = useDispatch();
+  const { items: services, status, error } = useSelector((state) => state.services);
+
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchServices());
+    }
+  }, [status, dispatch]);
+
+  if (status === "loading") {
+    return <p className="text-gray-600">Loading services...</p>;
+  }
+
+  if (status === "failed") {
+    return <p className="text-red-600">Error: {error}</p>;
+  }
 
   return (
     <div>
@@ -12,21 +27,18 @@ export default function Services() {
         {services.map((service) => (
           <div
             key={service.id}
-            className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
+            className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-lg transition"
           >
             <h2 className="text-xl font-semibold">{service.name}</h2>
-            <p className="text-gray-600">{service.description}</p>
+            <p className="text-gray-600 dark:text-gray-300">
+              {service.description}
+            </p>
             <p className="mt-2 font-bold">${service.price}</p>
-
-            {/* Center the button */}
-            <div className="flex justify-center mt-6">
-              <button
-                onClick={() => dispatch(addWorkOrder(service))}
-                className="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700"
-              >
-                More Info
-              </button>
-            </div>
+            <button
+              className="mt-6 w-full px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700"
+            >
+              Add to Work Order
+            </button>
           </div>
         ))}
       </div>

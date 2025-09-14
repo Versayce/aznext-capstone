@@ -1,43 +1,37 @@
 import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import WorkOrderForm from "./pages/WorkOrderForm";
 
 export default function App() {
+  // Initialize dark mode from localStorage or system preference
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem("darkMode");
+    if (saved !== null) return JSON.parse(saved);
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  // Update localStorage and <html> class whenever darkMode changes
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
   return (
-    <>
-      <Navbar />
+    <div>
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <div className="w-screen h-64 bg-black shadow-md"></div>
-              <main className="min-h-screen p-6 bg-gray-50 text-gray-900 md:mx-4 lg:mx-8">
-                <Home />
-              </main>
-            </>
-          }
-        />
-        <Route
-          path="/services"
-          element={
-            <main className="min-h-screen p-6 bg-gray-50 text-gray-900 md:mx-4 lg:mx-8">
-              <Services />
-            </main>
-          }
-        />
-        <Route
-          path="/work-order"
-          element={
-            <main className="min-h-screen p-6 bg-gray-50 text-gray-900 md:mx-4 lg:mx-8">
-              <WorkOrderForm />
-            </main>
-          }
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/work-order" element={<WorkOrderForm />} />
       </Routes>
-    </>
+    </div>
   );
 }

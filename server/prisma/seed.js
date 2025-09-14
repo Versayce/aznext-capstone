@@ -7,9 +7,9 @@ async function main() {
   console.log("Seeding car shop services...");
 
   // Option 1: wipe existing data (for testing/dev only!)
-  await prisma.product.deleteMany();
+  await prisma.service.deleteMany();
 
-  await prisma.product.createMany({
+  await prisma.service.createMany({
     data: [
       {
         name: "Oil Change",

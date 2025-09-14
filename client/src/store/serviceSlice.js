@@ -2,10 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Thunk to fetch services from backend
 export const fetchServices = createAsyncThunk("services/fetch", async () => {
-  const res = await fetch("/api/services"); // hits your Express server
-  if (!res.ok) {
-    throw new Error("Failed to fetch services");
-  }
+  const res = await fetch("http://localhost:5000/api/services"); // must include backend port
+  if (!res.ok) throw new Error("Failed to fetch services");
   return await res.json();
 });
 

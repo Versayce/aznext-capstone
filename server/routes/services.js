@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     const services = await prisma.service.findMany();
     res.json(services);
   } catch (error) {
-    console.error("Error fetching services:", error);
+    console.error(error);
     res.status(500).json({ error: "Failed to fetch services" });
   }
 });

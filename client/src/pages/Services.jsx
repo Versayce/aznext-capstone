@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 export default function Services() {
-  const services = useSelector((state) => state.products.items);
+  const services = useSelector((state) => state.services.items);
   const dispatch = useDispatch();
 
   return (

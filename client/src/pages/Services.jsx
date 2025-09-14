@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchServices } from "../store/serviceSlice";
+import { addWorkOrder } from "../store/workOrderSlice";
 
 export default function Services() {
   const dispatch = useDispatch();
@@ -13,29 +14,32 @@ export default function Services() {
   }, [status, dispatch]);
 
   if (status === "loading") {
-    return <p className="text-gray-600">Loading services...</p>;
+    return <p className="text-gray-600 dark:text-gray-300">Loading services...</p>;
   }
 
   if (status === "failed") {
-    return <p className="text-red-600">Error: {error}</p>;
+    return <p className="text-red-600 dark:text-red-400">Error: {error}</p>;
   }
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6">Our Services</h1>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="p-4 md:p-8 lg:p-12">
+      <h1 className="text-3xl font-bold mb-10 text-center dark:text-white">Our Services</h1>
+
+      <div className="grid gap-6 md:gap-8 lg:gap-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {services.map((service) => (
           <div
             key={service.id}
-            className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-lg transition"
+            className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-lg transition flex flex-col justify-between"
           >
-            <h2 className="text-xl font-semibold">{service.name}</h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              {service.description}
-            </p>
-            <p className="mt-2 font-bold">${service.price}</p>
+            <div className="space-y-2">
+              <h2 className="text-xl font-semibold dark:text-white">{service.name}</h2>
+              <p className="text-gray-600 dark:text-gray-300">{service.description}</p>
+              <p className="mt-2 font-bold dark:text-white">${service.price}</p>
+            </div>
+
             <button
-              className="mt-6 w-full px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700"
+              onClick={() => dispatch(addWorkOrder(service))}
+              className="mt-6 w-full px-4 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition"
             >
               Add to Work Order
             </button>

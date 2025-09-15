@@ -45,7 +45,7 @@
 
 /* Light mode */
 body {
-  background-color: var(--color-slate-50);
+  background-color: var(--color-gray-50);
 }
 
 /* Dark mode */

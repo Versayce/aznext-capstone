@@ -1,17 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
-import { clearWorkOrder, removeWorkOrder } from "../store/workOrderSlice";
+import { clearWorkOrderItems, removeWorkOrderItem } from "../store/workOrderSlice";
 import { useState } from "react";
 import { Trash2 } from "lucide-react";
 
 export default function WorkOrderForm() {
-  const items = useSelector((state) => state.workOrder.items);
+  const items = useSelector((state) => state.workOrders.items);
   const dispatch = useDispatch();
   const [form, setForm] = useState({ name: "", email: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`Work order submitted for ${form.name} (${form.email})`);
-    dispatch(clearWorkOrder());
+    dispatch(clearWorkOrderItems());
     setForm({ name: "", email: "" });
   };
 
@@ -21,35 +21,43 @@ export default function WorkOrderForm() {
         Submit a Work Order
       </h1>
 
-      {/* Scrollable service list */}
       {items.length > 0 ? (
-        <ul className="space-y-3 max-w-lg mx-auto overflow-y-auto" style={{ maxHeight: '250px' }}>
+        <ul
+          className="space-y-3 max-w-lg mx-auto overflow-y-auto"
+          style={{ maxHeight: '250px' }}
+        >
           {items.map((item) => (
             <li
               key={item.id}
               className="flex justify-between items-center p-3 rounded-sm shadow-md bg-white dark:bg-slate-600"
             >
-              <div>
-                <span className="font-medium text-slate-900 dark:text-slate-100">{item.name}</span>
-                <span className="ml-3 font-medium text-slate-900 dark:text-slate-100">${item.price}</span>
+              {/* Item name */}
+              <span className="font-medium text-slate-900 dark:text-slate-100">
+                {item.name}
+              </span>
+
+              {/* Price and remove button */}
+              <div className="flex items-center space-x-3">
+                <span className="font-medium text-slate-900 dark:text-slate-100">
+                  ${item.price}
+                </span>
+                <button
+                  onClick={() => dispatch(removeWorkOrderItem(item.id))}
+                  className="p-2 rounded-lg text-rose-400 hover:text-rose-600 hover:bg-rose-100 dark:hover:bg-rose-300 transition cursor-pointer"
+                  aria-label={`Remove ${item.name}`}
+                >
+                  <Trash2 size={20} />
+                </button>
               </div>
-              <button
-                onClick={() => dispatch(removeWorkOrder(item.id))}
-                className="p-2 rounded-lg text-rose-400 hover:text-rose-600 hover:bg-rose-100 dark:hover:bg-rose-300 transition"
-                aria-label={`Remove ${item.name}`}
-              >
-                <Trash2 size={20} />
-              </button>
             </li>
           ))}
         </ul>
       ) : (
         <p className="text-center text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-6">
-          Please select a service from the Services page to add to your work order.
+          Please select a service or services from the Services page to add to your work order. Please keep in mind that our hourly labor rate is $120 per hour.
         </p>
       )}
 
-      {/* Form */}
       <form
         onSubmit={handleSubmit}
         className="max-w-lg w-full mt-10 mx-auto rounded-2xl overflow-hidden shadow-md bg-white dark:bg-slate-600 flex flex-col"
@@ -72,11 +80,15 @@ export default function WorkOrderForm() {
         />
         <button
           type="submit"
-          className="w-full py-3 bg-rose-300 text-white font-medium hover:bg-rose-400 transition"
+          className="w-full py-3 bg-rose-300 text-white font-medium hover:bg-rose-400 transition cursor-pointer"
         >
           Submit
         </button>
       </form>
+
+      <p className="text-center text-slate-600 dark:text-slate-400 max-w-md mx-auto mt-6">
+        Our team will review your work order and contact you to confirm details and schedule an appointment.
+      </p>
     </div>
   );
 }

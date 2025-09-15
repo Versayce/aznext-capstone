@@ -4,7 +4,7 @@ import workOrderReducer from "./workOrderSlice";
 
 export const store = configureStore({
   reducer: {
-    workOrder: workOrderReducer,
+    workOrders: workOrderReducer,
     services: serviceReducer,
   },
 });

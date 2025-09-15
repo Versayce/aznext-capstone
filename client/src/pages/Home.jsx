@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="bg-slate-50 dark:bg-slate-650">
+    <div className="bg-gray-50 dark:bg-slate-650">
       <div className="w-full h-40 sm:h-48 md:h-96 bg-slate-900 dark:bg-slate-700 shadow-md"></div>
 
       <div className="px-3 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-10 max-w-3xl mx-auto space-y-5 sm:space-y-8 text-center">

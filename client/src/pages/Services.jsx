@@ -29,17 +29,19 @@ export default function Services() {
         {services.map((service) => (
           <div
             key={service.id}
-            className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-lg transition flex flex-col justify-between"
+            className="bg-white dark:bg-slate-600 rounded-2xl shadow hover:shadow-lg transition flex flex-col overflow-hidden"
           >
-            <div className="space-y-2">
+            {/* Content with padding */}
+            <div className="p-6 flex-1 space-y-2">
               <h2 className="text-xl font-semibold dark:text-white">{service.name}</h2>
               <p className="text-gray-600 dark:text-gray-300">{service.description}</p>
               <p className="mt-2 font-bold dark:text-white">${service.price}</p>
             </div>
 
+            {/* Full-width, flush button */}
             <button
               onClick={() => dispatch(addWorkOrder(service))}
-              className="mt-6 w-full px-4 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition"
+              className="w-full bg-rose-250 text-white py-3 hover:bg-rose-500 transition"
             >
               Add to Work Order
             </button>

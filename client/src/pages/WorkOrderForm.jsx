@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { removeWorkOrder, clearWorkOrder } from "../store/workOrderSlice";
+import { clearWorkOrder } from "../store/workOrderSlice";
 import { useState } from "react";
 
 export default function WorkOrderForm() {
@@ -15,38 +15,39 @@ export default function WorkOrderForm() {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6">Submit Work Order</h1>
+    <div className="p-4 md:p-8 lg:p-12 space-y-8">
+      <h1 className="text-3xl font-bold text-center text-chatgpt-text-dark dark:text-slate-200">
+        Submit Work Order
+      </h1>
 
+      {/* Selected Services */}
       {items.length === 0 ? (
-        <p className="text-gray-600 dark:text-gray-400">No services selected yet.</p>
+        <p className="text-center text-slate-600 dark:text-slate-400">No services selected yet.</p>
       ) : (
-        <ul className="mb-6 space-y-2">
+        <ul className="space-y-4 max-w-lg mx-auto">
           {items.map((item) => (
             <li
               key={item.id}
-              className="flex justify-between items-center bg-white dark:bg-gray-800 p-3 rounded-lg shadow"
+              className="flex justify-between items-center p-4 rounded-2xl shadow-md bg-chatgpt-light dark:bg-slate-600"
             >
-              <span>{item.name}</span>
-              <span className="font-medium">${item.price}</span>
-              <button
-                onClick={() => dispatch(removeWorkOrder(item.id))}
-                className="ml-4 px-2 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition"
-              >
-                Remove
-              </button>
+              <span className="font-medium text-slate-900 dark:text-slate-100">{item.name}</span>
+              <span className="font-medium text-slate-900 dark:text-slate-100">${item.price}</span>
             </li>
           ))}
         </ul>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4 max-w-md">
+      {/* Form Card */}
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-lg mx-auto rounded-2xl overflow-hidden shadow-md bg-chatgpt-light dark:bg-slate-600 flex flex-col"
+      >
         <input
           type="text"
           placeholder="Your Name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="w-full p-3 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-600"
+          className="w-full p-4 border-b border-slate-300 dark:border-slate-800 bg-transparent text-slate-900 dark:text-slate-100 focus:outline-none"
           required
         />
         <input
@@ -54,12 +55,12 @@ export default function WorkOrderForm() {
           placeholder="Your Email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
-          className="w-full p-3 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-600"
+          className="w-full p-4 border-b border-slate-300 dark:border-slate-800 bg-transparent text-slate-900 dark:text-slate-100 focus:outline-none"
           required
         />
         <button
           type="submit"
-          className="w-full px-4 py-3 rounded-lg bg-green-600 text-white hover:bg-green-700 transition"
+          className="w-full px-4 py-3 bg-rose-300 dark:bg-rose-300 text-white hover:bg-rose-400 transition cursor-pointer"
         >
           Submit
         </button>

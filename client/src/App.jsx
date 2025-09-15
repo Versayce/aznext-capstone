@@ -10,15 +10,14 @@ export default function App() {
       <Navbar />
 
       {/* App background container */}
-      <div className="bg-gray-50 dark:bg-gray-900 transition-colors duration-300 min-h-screen">
+      <div className="bg-gray-50 dark:bg-slate-650 transition-colors duration-300 min-h-screen">
         <Routes>
-          {/* Home Page */}
           <Route
             path="/"
             element={
               <>
-                {/* Hero Section */}
-                <div className="w-screen h-64 bg-gray-900 dark:bg-gray-800 shadow-md"></div>
+
+                <div className="w-screen h-84 bg-slate-900 dark:bg-slate-700 shadow-md"></div>
 
                 {/* Main Content */}
                 <main className="min-h-screen p-6 md:mx-4 lg:mx-8">

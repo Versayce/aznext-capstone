@@ -17,7 +17,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-4 flex items-center justify-between sticky top-0 z-50 shadow-md">
+    <nav className="bg-gray-100 dark:bg-slate-700 text-gray-900 dark:text-gray-100 p-4 flex items-center justify-between sticky top-0 z-50 shadow-md">
       {/* Left links */}
       <div className="flex space-x-6">
         <NavLink
@@ -52,11 +52,11 @@ export default function Navbar() {
         <button
           onClick={toggleDarkMode}
           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-            darkMode ? "bg-blue-600" : "bg-gray-400"
+            darkMode ? "bg-slate-500" : "bg-slate-250"
           }`}
         >
           <span
-            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+            className={`inline-block h-4 w-4 transform rounded-full bg-gray-50 transition-transform dark:bg-slate-400 ${
               darkMode ? "translate-x-6" : "translate-x-1"
             }`}
           />

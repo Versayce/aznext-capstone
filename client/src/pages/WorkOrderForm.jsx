@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { clearWorkOrder } from "../store/workOrderSlice";
+import { clearWorkOrder, removeWorkOrder } from "../store/workOrderSlice";
 import { useState } from "react";
+import { Trash2 } from "lucide-react";
 
 export default function WorkOrderForm() {
   const items = useSelector((state) => state.workOrder.items);
@@ -15,32 +16,43 @@ export default function WorkOrderForm() {
   };
 
   return (
-    <div className="p-4 md:p-8 lg:p-12 space-y-8">
-      <h1 className="text-3xl font-bold text-center text-chatgpt-text-dark dark:text-slate-200">
-        Submit Work Order
+    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 py-10">
+      <h1 className="text-3xl font-bold text-center text-slate-800 dark:text-slate-200 mb-10">
+        Submit a Work Order
       </h1>
 
-      {/* Selected Services */}
-      {items.length === 0 ? (
-        <p className="text-center text-slate-600 dark:text-slate-400">No services selected yet.</p>
-      ) : (
-        <ul className="space-y-4 max-w-lg mx-auto">
+      {/* Scrollable service list */}
+      {items.length > 0 ? (
+        <ul className="space-y-3 max-w-lg mx-auto overflow-y-auto" style={{ maxHeight: '250px' }}>
           {items.map((item) => (
             <li
               key={item.id}
-              className="flex justify-between items-center p-4 rounded-2xl shadow-md bg-chatgpt-light dark:bg-slate-600"
+              className="flex justify-between items-center p-3 rounded-sm shadow-md bg-white dark:bg-slate-600"
             >
-              <span className="font-medium text-slate-900 dark:text-slate-100">{item.name}</span>
-              <span className="font-medium text-slate-900 dark:text-slate-100">${item.price}</span>
+              <div>
+                <span className="font-medium text-slate-900 dark:text-slate-100">{item.name}</span>
+                <span className="ml-3 font-medium text-slate-900 dark:text-slate-100">${item.price}</span>
+              </div>
+              <button
+                onClick={() => dispatch(removeWorkOrder(item.id))}
+                className="p-2 rounded-lg text-rose-400 hover:text-rose-600 hover:bg-rose-100 dark:hover:bg-rose-300 transition"
+                aria-label={`Remove ${item.name}`}
+              >
+                <Trash2 size={20} />
+              </button>
             </li>
           ))}
         </ul>
+      ) : (
+        <p className="text-center text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-6">
+          Please select a service from the Services page to add to your work order.
+        </p>
       )}
 
-      {/* Form Card */}
+      {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="max-w-lg mx-auto rounded-2xl overflow-hidden shadow-md bg-chatgpt-light dark:bg-slate-600 flex flex-col"
+        className="max-w-lg w-full mt-10 mx-auto rounded-2xl overflow-hidden shadow-md bg-white dark:bg-slate-600 flex flex-col"
       >
         <input
           type="text"
@@ -60,7 +72,7 @@ export default function WorkOrderForm() {
         />
         <button
           type="submit"
-          className="w-full px-4 py-3 bg-rose-300 dark:bg-rose-300 text-white hover:bg-rose-400 transition cursor-pointer"
+          className="w-full py-3 bg-rose-300 text-white font-medium hover:bg-rose-400 transition"
         >
           Submit
         </button>

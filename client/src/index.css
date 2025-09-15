@@ -41,3 +41,14 @@
   --color-slate-850: #040404;
   --color-slate-900: #030303;
 }
+
+
+/* Light mode */
+body {
+  background-color: var(--color-slate-50);
+}
+
+/* Dark mode */
+:where(.dark, .dark *) body {
+  background-color: var(--color-slate-650);
+}

@@ -36,13 +36,13 @@ async function main() {
         inStock: true,
       },
       {
-        name: "Suspension Setup",
+        name: "Suspension Tuning",
         description: "Custom coilover adjustment and corner balancing for track use",
         price: 299.99,
         inStock: true,
       },
       {
-        name: "Brake Upgrade",
+        name: "Brake Maintenance",
         description: "High-performance brake pads and rotor installation",
         price: 399.99,
         inStock: true,

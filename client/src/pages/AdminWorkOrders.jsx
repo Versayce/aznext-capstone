@@ -31,7 +31,7 @@ export default function AdminWorkOrders() {
   return (
     <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 py-10">
       <h1 className="text-3xl font-bold text-center text-slate-800 dark:text-slate-200 mb-10">
-        Admin Work Orders
+        Work Orders
       </h1>
 
       <ul className="space-y-6 max-w-3xl mx-auto">
@@ -59,8 +59,8 @@ export default function AdminWorkOrders() {
                     {item.service.name}
                   </span>
                   <div className="flex items-center space-x-3">
-                    <span className="font-medium text-slate-900 dark:text-slate-100">
-                      {/* ${item.service.price} × {item.quantity} */}
+                    <span className="font-medium text-slate-900 dark:text-slate-300">
+                      ${item.service.price}
                     </span>
                     <button
                       onClick={() => handleRemoveItem(wo.id, item.id)}
@@ -75,7 +75,7 @@ export default function AdminWorkOrders() {
             </ul>
 
             <div className="text-right mt-3 font-semibold text-slate-800 dark:text-slate-200">
-              {/* Total: ${wo.totalPrice?.toFixed(2) || "0.00"} */}
+              {`Total: $${wo.items.reduce((sum, item) => sum + item.service.price, 0)}`}
             </div>
 
             <button

@@ -7,8 +7,35 @@ export const fetchWorkOrders = createAsyncThunk(
   "workOrders/fetchWorkOrders",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:5000/api/admin/work-orders");
+      const res = await fetch("http://localhost:5000/api/work-orders");
       if (!res.ok) throw new Error("Failed to fetch work orders");
+      return await res.json();
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
+
+export const createWorkOrder = createAsyncThunk(
+  "workOrders/createWorkOrder",
+  async ({ customerName, customerEmail, items }, { rejectWithValue }) => {
+    try {
+      const mappedItems = items.map(i => ({
+        serviceId: i.id,  // matches your Service table
+        quantity: i.quantity || 1,
+      }));
+
+      const res = await fetch("http://localhost:5000/api/work-orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ customerName, customerEmail, items: mappedItems }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to create work order");
+      }
+
       return await res.json();
     } catch (err) {
       return rejectWithValue(err.message);
@@ -20,7 +47,7 @@ export const deleteWorkOrder = createAsyncThunk(
   "workOrders/deleteWorkOrder",
   async (id, { rejectWithValue }) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/admin/work-orders/${id}`, {
+      const res = await fetch(`http://localhost:5000/api/work-orders/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error("Failed to delete work order");
@@ -36,7 +63,7 @@ export const deleteWorkOrderItem = createAsyncThunk(
   async ({ workOrderId, itemId }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/work-orders/${workOrderId}/items/${itemId}`,
+        `http://localhost:5000/api/work-orders/${workOrderId}/items/${itemId}`,
         { method: "DELETE" }
       );
       if (!res.ok) throw new Error("Failed to delete work order item");
@@ -52,7 +79,7 @@ export const completeWorkOrder = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/work-orders/${id}/complete`,
+        `http://localhost:5000/api/work-orders/${id}/complete`,
         { method: "PATCH" }
       );
       if (!res.ok) throw new Error("Failed to complete work order");
@@ -116,6 +143,10 @@ const workOrderSlice = createSlice({
         const { id, status } = action.payload;
         const order = state.workOrders.find((o) => o.id === id);
         if (order) order.status = status;
+      })
+      .addCase(createWorkOrder.fulfilled, (state, action) => {
+        state.workOrders.unshift(action.payload);
+        state.items = [];
       });
   },
 });

@@ -34,6 +34,7 @@ async function main() {
   const workOrder1 = await prisma.workOrder.create({
     data: {
       customerName: "John Doe",
+      customerEmail: "john.doe@example.com", // added email
       items: {
         create: [
           { serviceId: getServiceId("Oil Change"), quantity: 1 },
@@ -47,6 +48,7 @@ async function main() {
   const workOrder2 = await prisma.workOrder.create({
     data: {
       customerName: "Jane Smith",
+      customerEmail: "jane.smith@example.com", // added email
       items: {
         create: [
           { serviceId: getServiceId("Track Inspection"), quantity: 1 },

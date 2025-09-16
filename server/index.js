@@ -9,6 +9,6 @@ app.use(cors({ origin: "http://localhost:5173" }));
 
 app.use(express.json());
 app.use("/api/services", servicesRouter);
-app.use("/api/admin/work-orders", workOrdersRouter);
+app.use("/api/work-orders", workOrdersRouter);
 
 app.listen(5000, () => console.log("Server running on http://localhost:5000"));

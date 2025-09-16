@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { clearWorkOrderItems, removeWorkOrderItem } from "../store/workOrderSlice";
+import { createWorkOrder, removeWorkOrderItem } from "../store/workOrderSlice";
 import { useState } from "react";
 import { Trash2 } from "lucide-react";
 
@@ -10,9 +10,29 @@ export default function WorkOrderForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Work order submitted for ${form.name} (${form.email})`);
-    dispatch(clearWorkOrderItems());
-    setForm({ name: "", email: "" });
+    if (items.length === 0) {
+      alert("Please add at least one service before submitting.");
+      return;
+    }
+
+    const formattedItems = items.map(i => ({
+      serviceId: i.id,
+      quantity: i.quantity || 1,
+    }));
+
+    dispatch(createWorkOrder({
+      customerName: form.name,
+      customerEmail: form.email,
+      items: items.map(i => ({ id: i.id, quantity: i.quantity || 1 }))
+    }))
+      .unwrap()
+      .then(() => {
+        setForm({ name: "", email: "" });
+        alert("Work order submitted successfully!");
+      })
+      .catch((err) => {
+        alert("Failed to submit work order: " + err);
+      });
   };
 
   return (

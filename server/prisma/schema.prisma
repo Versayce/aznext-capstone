@@ -20,7 +20,8 @@ model Service {
 
 model WorkOrder {
   id           Int             @id @default(autoincrement())
-  customerName String
+  customerName String 
+  customerEmail String
   status       String          @default("Pending") // Pending, In Progress, Completed
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt

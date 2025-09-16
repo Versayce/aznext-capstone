@@ -37,16 +37,25 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const { customerName, customerEmail, items } = req.body;
+
+    if (!customerName || !customerEmail || !items || items.length === 0) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
     const workOrder = await prisma.workOrder.create({
       data: {
         customerName,
         customerEmail,
         items: {
-          create: items.map((i) => ({ serviceId: i.serviceId, quantity: i.quantity })),
+          create: items.map(i => ({
+            serviceId: i.serviceId,
+            quantity: i.quantity,
+          })),
         },
       },
       include: { items: { include: { service: true } } },
     });
+
     res.status(201).json(workOrder);
   } catch (error) {
     console.error(error);

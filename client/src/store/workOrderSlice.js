@@ -18,17 +18,17 @@ export const fetchWorkOrders = createAsyncThunk(
 
 export const createWorkOrder = createAsyncThunk(
   "workOrders/createWorkOrder",
-  async ({ customerName, customerEmail, items }, { rejectWithValue }) => {
+  async ({ customerName, customerEmail, comments, items }, { rejectWithValue }) => {
     try {
       const mappedItems = items.map(i => ({
-        serviceId: i.id,  // matches your Service table
+        serviceId: i.id,
         quantity: i.quantity || 1,
       }));
 
       const res = await fetch("http://localhost:5000/api/work-orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ customerName, customerEmail, items: mappedItems }),
+        body: JSON.stringify({ customerName, customerEmail, comments, items: mappedItems }),
       });
 
       if (!res.ok) {
@@ -42,6 +42,7 @@ export const createWorkOrder = createAsyncThunk(
     }
   }
 );
+
 
 export const deleteWorkOrder = createAsyncThunk(
   "workOrders/deleteWorkOrder",

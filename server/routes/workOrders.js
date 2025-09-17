@@ -36,7 +36,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { customerName, customerEmail, items } = req.body;
+    const { customerName, customerEmail, comments, items } = req.body;
 
     if (!customerName || !customerEmail || !items || items.length === 0) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -46,6 +46,7 @@ router.post("/", async (req, res) => {
       data: {
         customerName,
         customerEmail,
+        comments,
         items: {
           create: items.map(i => ({
             serviceId: i.serviceId,

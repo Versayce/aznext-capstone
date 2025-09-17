@@ -22,6 +22,7 @@ model WorkOrder {
   id           Int             @id @default(autoincrement())
   customerName String 
   customerEmail String
+  comments     String?
   status       String          @default("Pending") // Pending, In Progress, Completed
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt

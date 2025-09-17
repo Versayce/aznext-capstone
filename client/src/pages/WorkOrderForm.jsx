@@ -6,7 +6,7 @@ import { Trash2 } from "lucide-react";
 export default function WorkOrderForm() {
   const items = useSelector((state) => state.workOrders.items);
   const dispatch = useDispatch();
-  const [form, setForm] = useState({ name: "", email: "" });
+  const [form, setForm] = useState({ name: "", email: "", comments: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,19 +15,20 @@ export default function WorkOrderForm() {
       return;
     }
 
-    const formattedItems = items.map(i => ({
-      serviceId: i.id,
-      quantity: i.quantity || 1,
-    }));
-
-    dispatch(createWorkOrder({
-      customerName: form.name,
-      customerEmail: form.email,
-      items: items.map(i => ({ id: i.id, quantity: i.quantity || 1 }))
-    }))
+    dispatch(
+      createWorkOrder({
+        customerName: form.name,
+        customerEmail: form.email,
+        comments: form.comments,
+        items: items.map((i) => ({
+          id: i.id,
+          quantity: i.quantity || 1,
+        })),
+      })
+    )
       .unwrap()
       .then(() => {
-        setForm({ name: "", email: "" });
+        setForm({ name: "", email: "", comments: "" });
         alert("Work order submitted successfully!");
       })
       .catch((err) => {
@@ -36,7 +37,7 @@ export default function WorkOrderForm() {
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 py-10">
+    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 pt-40">
       <h1 className="text-3xl font-bold text-center text-slate-800 dark:text-slate-200 mb-10">
         Submit a Work Order
       </h1>
@@ -44,7 +45,7 @@ export default function WorkOrderForm() {
       {items.length > 0 ? (
         <ul
           className="space-y-3 max-w-lg mx-auto overflow-y-auto"
-          style={{ maxHeight: '250px' }}
+          style={{ maxHeight: "250px" }}
         >
           {items.map((item) => (
             <li
@@ -74,7 +75,9 @@ export default function WorkOrderForm() {
         </ul>
       ) : (
         <p className="text-center text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-6">
-          Please select a service or services from the Services page to add to your work order. Please keep in mind that our hourly labor rate is $120 per hour.
+          Please select a service or services from the Services page to add to
+          your work order. Please keep in mind that our hourly labor rate is
+          $120 per hour.
         </p>
       )}
 
@@ -98,6 +101,13 @@ export default function WorkOrderForm() {
           className="w-full p-4 border-b border-slate-300 dark:border-slate-800 bg-transparent text-slate-900 dark:text-slate-100 focus:outline-none"
           required
         />
+        <textarea
+          placeholder="Comments (optional)"
+          value={form.comments}
+          onChange={(e) => setForm({ ...form, comments: e.target.value })}
+          className="w-full p-4 border-b border-slate-300 dark:border-slate-800 bg-transparent text-slate-900 dark:text-slate-100 focus:outline-none"
+          rows="4"
+        />
         <button
           type="submit"
           className="w-full py-3 bg-rose-300 text-white font-medium hover:bg-rose-400 transition cursor-pointer"
@@ -107,7 +117,8 @@ export default function WorkOrderForm() {
       </form>
 
       <p className="text-center text-slate-600 dark:text-slate-400 max-w-md mx-auto mt-6">
-        Our team will review your work order and contact you to confirm details and schedule an appointment.
+        Our team will review your work order and contact you to confirm details
+        and schedule an appointment.
       </p>
     </div>
   );

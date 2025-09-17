@@ -9,7 +9,9 @@ import { Trash2 } from "lucide-react";
 
 export default function AdminWorkOrders() {
   const dispatch = useDispatch();
-  const { workOrders, loading, error } = useSelector((state) => state.workOrders); // correct slice
+  const { workOrders, loading, error } = useSelector(
+    (state) => state.workOrders
+  ); // correct slice
 
   useEffect(() => {
     dispatch(fetchWorkOrders());
@@ -40,7 +42,8 @@ export default function AdminWorkOrders() {
             key={wo.id}
             className="flex flex-col p-4 rounded-2xl shadow-md bg-white dark:bg-slate-600"
           >
-            <div className="flex justify-between items-center mb-4">
+            {/* Customer name + status */}
+            <div className="flex justify-between items-center mb-2">
               <span className="font-semibold text-slate-800 dark:text-slate-200">
                 {wo.customerName}
               </span>
@@ -49,6 +52,21 @@ export default function AdminWorkOrders() {
               </span>
             </div>
 
+            {/* Email */}
+            {wo.customerEmail && (
+              <div className="text-sm text-slate-600 dark:text-slate-300 mb-2">
+                Email: {wo.customerEmail}
+              </div>
+            )}
+
+            {/* Comments */}
+            {wo.comments && (
+              <div className="mb-3 p-3 rounded-md bg-slate-100 dark:bg-slate-550 text-slate-700 dark:text-slate-200 text-sm italic">
+                “{wo.comments}”
+              </div>
+            )}
+
+            {/* Items list */}
             <ul className="space-y-2">
               {wo.items.map((item) => (
                 <li
@@ -74,10 +92,15 @@ export default function AdminWorkOrders() {
               ))}
             </ul>
 
+            {/* Total */}
             <div className="text-right mt-3 font-semibold text-slate-800 dark:text-slate-200">
-              {`Total: $${wo.items.reduce((sum, item) => sum + item.service.price, 0)}`}
+              {`Total: $${wo.items.reduce(
+                (sum, item) => sum + item.service.price,
+                0
+              )}`}
             </div>
 
+            {/* Delete button */}
             <button
               onClick={() => handleDeleteOrder(wo.id)}
               className="mt-3 w-full py-2 bg-rose-300 text-white font-medium hover:bg-rose-500 transition rounded-lg"

@@ -35,7 +35,7 @@ export default function Services() {
         Services
       </h1>
       <p className="text-center text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10">
-        Our shop specializes in a variety of car services to keep your vehicle in top condition. All prices are subject to change based on labor and parts. Prices shown are low-end estimates.
+        Our shop specializes in a variety of car services to keep your vehicle in top condition. All prices are subject to change based on labor and parts. Prices shown are general estimates.
       </p>
 
       {status === "loading" && (

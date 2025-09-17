@@ -5,7 +5,7 @@ export default function Home() {
 
       <div className="px-3 mt-10 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-10 max-w-3xl mx-auto space-y-5 sm:space-y-8 text-center">
         <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-slate-500 dark:text-slate-100">
-          Welcome to The Shop
+          Timing Logic Race Shop
         </h1>
 
         <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400">

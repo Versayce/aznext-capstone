@@ -21,7 +21,6 @@ export default function Navbar() {
 
   return (
     <nav className="bg-gray-100 dark:bg-slate-700 text-gray-900 dark:text-gray-100 p-4 flex items-center justify-between sticky top-0 z-50 shadow-md">
-      {/* Left links */}
       <div className="flex flex-wrap md:flex-nowrap space-x-4 md:space-x-6">
         <NavLink
           to="/"
@@ -49,9 +48,7 @@ export default function Navbar() {
         </NavLink>
       </div>
 
-      {/* Dark mode toggle */}
       <div className="ml-auto flex items-center space-x-2">
-        {/* Light label */}
         <span
           className={`hidden sm:inline text-sm transition-opacity duration-300 ${
             darkMode ? "opacity-0" : "opacity-100"
@@ -73,7 +70,6 @@ export default function Navbar() {
           />
         </button>
 
-        {/* Dark label */}
         <span
           className={`hidden sm:inline text-sm transition-opacity duration-300 ${
             darkMode ? "opacity-100" : "opacity-0"

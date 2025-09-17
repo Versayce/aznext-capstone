@@ -34,7 +34,8 @@ async function main() {
   const workOrder1 = await prisma.workOrder.create({
     data: {
       customerName: "John Doe",
-      customerEmail: "john.doe@example.com", // added email
+      customerEmail: "john.doe@example.com", 
+      comments: "Please prioritize the oil change. Thanks!",
       items: {
         create: [
           { serviceId: getServiceId("Oil Change"), quantity: 1 },
@@ -48,12 +49,27 @@ async function main() {
   const workOrder2 = await prisma.workOrder.create({
     data: {
       customerName: "Jane Smith",
-      customerEmail: "jane.smith@example.com", // added email
+      customerEmail: "jane.smith@example.com",
+      comments: "Please inspect trailing arms and bushings as well. Front cv-axles have torn boots that need replacing as well.",
       items: {
         create: [
           { serviceId: getServiceId("Track Inspection"), quantity: 1 },
           { serviceId: getServiceId("Wheel Alignment"), quantity: 1 },
           { serviceId: getServiceId("Suspension Tuning"), quantity: 1 },
+        ],
+      },
+    },
+  });
+
+  const workOrder3 = await prisma.workOrder.create({
+    data: {
+      customerName: "Alice Johnson",
+      customerEmail: "ajohn@gmail.com",
+      comments: "Need brake maintenance before my next track day. Get me a set of grippy tires installed as well.",
+      items: {
+        create: [
+          { serviceId: getServiceId("Brake Maintenance"), quantity: 1 },
+          { serviceId: getServiceId("Tire Mounting & Balancing"), quantity: 1 },
         ],
       },
     },

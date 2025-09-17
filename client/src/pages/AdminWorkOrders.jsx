@@ -58,7 +58,7 @@ export default function AdminWorkOrders() {
             )}
 
             {wo.comments && (
-              <div className="mb-3 p-3 rounded-md bg-slate-100 dark:bg-slate-550 text-slate-700 dark:text-slate-200 text-sm italic">
+              <div className="mb-3 p-3 rounded-md bg-slate-50 dark:bg-slate-550 text-slate-700 dark:text-slate-200 text-sm italic">
                 “{wo.comments}”
               </div>
             )}
@@ -67,7 +67,7 @@ export default function AdminWorkOrders() {
               {wo.items.map((item) => (
                 <li
                   key={item.id}
-                  className="flex justify-between items-center p-2 rounded-sm bg-slate-100 dark:bg-slate-550"
+                  className="flex justify-between items-center p-2 rounded-sm bg-slate-50 dark:bg-slate-550"
                 >
                   <span className="font-medium text-slate-900 dark:text-slate-100">
                     {item.service.name}

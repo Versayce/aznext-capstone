@@ -2,6 +2,17 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@keyframes swipe-left-to-right {
+  0% { transform: translateX(-100%); opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes swipe-right-to-left {
+  0% { transform: translateX(100%); opacity: 1; }
+  100% { transform: translateX(-100%); opacity: 0; }
+}
+
+
 @theme {
   --color-rose-50:  #f4a0b3;
   --color-rose-100: #e8809f;
@@ -41,7 +52,6 @@
   --color-slate-850: #040404;
   --color-slate-900: #030303;
 }
-
 
 /* Light mode */
 body {

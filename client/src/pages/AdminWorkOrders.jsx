@@ -97,7 +97,7 @@ export default function AdminWorkOrders() {
 
             <button
               onClick={() => handleDeleteOrder(wo.id)}
-              className="mt-3 w-full py-2 bg-rose-300 text-white font-medium hover:bg-rose-500 transition rounded-lg"
+              className="mt-3 w-full py-2 bg-rose-300 text-white font-medium hover:bg-rose-500 transition rounded-lg cursor-pointer"
             >
               Delete Work Order
             </button>

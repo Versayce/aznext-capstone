@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Thunk to fetch services from backend
 export const fetchServices = createAsyncThunk("services/fetch", async () => {
-  const res = await fetch("http://localhost:5000/api/services"); // must include backend port
+  const res = await fetch("http://localhost:5000/api/services");
   if (!res.ok) throw new Error("Failed to fetch services");
   return await res.json();
 });
@@ -11,7 +10,7 @@ const serviceSlice = createSlice({
   name: "services",
   initialState: {
     items: [],
-    status: "idle", // idle | loading | succeeded | failed
+    status: "idle",
     error: null,
   },
   reducers: {},

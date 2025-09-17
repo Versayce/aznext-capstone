@@ -2,7 +2,6 @@ export default function About() {
   return (
     <div className="flex flex-col bg-gray-50 dark:bg-slate-650">
       
-      {/* Main content */}
       <main className="flex flex-col items-center px-3 sm:px-6 md:px-8 lg:px-12 my-auto">
         <div className="mt-30 max-w-3xl space-y-5 sm:space-y-8 text-center">
           <h1 className="text-3xl font-bold dark:text-slate-100">

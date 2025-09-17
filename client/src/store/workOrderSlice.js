@@ -1,8 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// --------------------
-// Async Thunks
-// --------------------
 export const fetchWorkOrders = createAsyncThunk(
   "workOrders/fetchWorkOrders",
   async (_, { rejectWithValue }) => {
@@ -92,9 +89,6 @@ export const completeWorkOrder = createAsyncThunk(
   }
 );
 
-// --------------------
-// Slice
-// --------------------
 const initialState = {
   items: [],
   workOrders: [],

@@ -12,7 +12,6 @@ export default function App() {
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-slate-650 transition-colors duration-500 ease-in-out">
       <Navbar />
 
-      {/* Main content grows to fill available space */}
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />

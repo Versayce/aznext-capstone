@@ -52,8 +52,8 @@ export default function Services() {
             const isAnimating = clickedId === service.id;
 
             const gradient = isAdding
-              ? "linear-gradient(to left, #15803D, #22C55E)"
-              : "linear-gradient(to right, #B91C1C, #EF4444)";
+              ? "linear-gradient(to right, #B91C1C, #EF4444)"
+              : "linear-gradient(to left, #15803D, #22C55E)";
 
             const animation = isAdding ? "swipe-left-to-right" : "swipe-right-to-left";
 
@@ -70,7 +70,7 @@ export default function Services() {
 
                 <button
                   onClick={() => handleToggle(service)}
-                  className={`w-full py-3 font-medium transition relative overflow-hidden rounded-lg cursor-pointer ${
+                  className={`w-full py-3 font-medium transition relative overflow-hidden rounded-b-lg cursor-pointer ${
                     added
                       ? "bg-rose-300 text-white hover:bg-rose-500"
                       : "bg-green-500 text-white hover:bg-green-600"

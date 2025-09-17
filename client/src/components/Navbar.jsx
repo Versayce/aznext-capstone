@@ -46,6 +46,12 @@ export default function Navbar() {
         >
           Admin
         </NavLink>
+        <NavLink
+          to="/about"
+          className="hover:text-gray-500 dark:hover:text-gray-300 whitespace-nowrap"
+        >
+          About
+        </NavLink>
       </div>
 
       <div className="ml-auto flex items-center space-x-2">

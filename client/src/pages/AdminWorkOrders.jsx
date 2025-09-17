@@ -31,7 +31,7 @@ export default function AdminWorkOrders() {
     return <p className="text-center mt-10">No work orders found.</p>;
 
   return (
-    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 pt-40">
+    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 py-30">
       <h1 className="text-3xl font-bold text-center text-slate-800 dark:text-slate-200 mb-10">
         Work Orders
       </h1>

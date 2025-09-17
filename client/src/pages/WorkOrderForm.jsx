@@ -42,7 +42,7 @@ export default function WorkOrderForm() {
   );
 
   return (
-    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 pt-40">
+    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 mt-30">
       <h1 className="text-3xl font-bold text-center text-slate-800 dark:text-slate-100 mb-10">
         Submit a Work Order
       </h1>

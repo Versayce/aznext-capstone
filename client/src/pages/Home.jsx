@@ -1,14 +1,16 @@
 export default function Home() {
   return (
     <div className="bg-gray-50 dark:bg-slate-650">
-      <div className="w-full h-40 sm:h-48 md:h-96 bg-slate-900 dark:bg-slate-700 shadow-md"></div>
+      {/* Hero image */}
+      <div className="w-full h-40 sm:h-48 md:h-96 shadow-md bg-[url(../src/assets/WRXS4.jpg)] bg-cover bg-center"></div>
 
-      <div className="px-3 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-10 max-w-3xl mx-auto space-y-5 sm:space-y-8 text-center">
+      {/* Content */}
+      <div className="px-3 mt-10 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-10 max-w-3xl mx-auto space-y-5 sm:space-y-8 text-center">
         <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-slate-500 dark:text-slate-100">
           Welcome to The Shop
         </h1>
 
-        <p className="text-sm sm:text-base sm:text-lg text-slate-500 dark:text-slate-400">
+        <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400">
           Professional car services including tuning, oil changes, track inspection,
           alignments, suspension setups, and more.
         </p>

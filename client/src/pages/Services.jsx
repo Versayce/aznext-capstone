@@ -30,9 +30,9 @@ export default function Services() {
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-10 py-10 2xl:px-60">
-      <h1 className="text-3xl font-bold mb-10 mt-30 text-center dark:text-slate-100">
-        Explore Our Services
+    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-10 py-10 2xl:px-50">
+      <h1 className="text-3xl font-bold mb-10 mt-20 text-center dark:text-slate-100">
+        Services
       </h1>
       <p className="text-center text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10">
         Our shop specializes in a variety of car services to keep your vehicle in top condition. All prices are subject to change based on labor and parts. Prices shown are low-end estimates.
@@ -46,7 +46,7 @@ export default function Services() {
       )}
 
       {status === "succeeded" && (
-        <div className="grid gap-6 mt-25 md:gap-8 lg:gap-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-6 mt-6 md:gap-8 lg:gap-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {services.map((service) => {
             const added = isInWorkOrder(service.id);
             const isAnimating = clickedId === service.id;

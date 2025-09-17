@@ -31,18 +31,17 @@ export default function AdminWorkOrders() {
     return <p className="text-center mt-10">No work orders found.</p>;
 
   return (
-    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 py-10">
+    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 pt-40">
       <h1 className="text-3xl font-bold text-center text-slate-800 dark:text-slate-200 mb-10">
         Work Orders
       </h1>
 
-      <ul className="space-y-6 max-w-3xl mx-auto">
+      <ul className="space-y-15 max-w-3xl mx-auto">
         {workOrders.map((wo) => (
           <li
             key={wo.id}
             className="flex flex-col p-4 rounded-2xl shadow-md bg-white dark:bg-slate-600"
           >
-            {/* Customer name + status */}
             <div className="flex justify-between items-center mb-2">
               <span className="font-semibold text-slate-800 dark:text-slate-200">
                 {wo.customerName}
@@ -52,21 +51,18 @@ export default function AdminWorkOrders() {
               </span>
             </div>
 
-            {/* Email */}
             {wo.customerEmail && (
               <div className="text-sm text-slate-600 dark:text-slate-300 mb-2">
                 Email: {wo.customerEmail}
               </div>
             )}
 
-            {/* Comments */}
             {wo.comments && (
               <div className="mb-3 p-3 rounded-md bg-slate-100 dark:bg-slate-550 text-slate-700 dark:text-slate-200 text-sm italic">
                 “{wo.comments}”
               </div>
             )}
 
-            {/* Items list */}
             <ul className="space-y-2">
               {wo.items.map((item) => (
                 <li
@@ -92,7 +88,6 @@ export default function AdminWorkOrders() {
               ))}
             </ul>
 
-            {/* Total */}
             <div className="text-right mt-3 font-semibold text-slate-800 dark:text-slate-200">
               {`Total: $${wo.items.reduce(
                 (sum, item) => sum + item.service.price,
@@ -100,7 +95,6 @@ export default function AdminWorkOrders() {
               )}`}
             </div>
 
-            {/* Delete button */}
             <button
               onClick={() => handleDeleteOrder(wo.id)}
               className="mt-3 w-full py-2 bg-rose-300 text-white font-medium hover:bg-rose-500 transition rounded-lg"

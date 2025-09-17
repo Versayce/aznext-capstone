@@ -11,7 +11,7 @@ export default function AdminWorkOrders() {
   const dispatch = useDispatch();
   const { workOrders, loading, error } = useSelector(
     (state) => state.workOrders
-  ); // correct slice
+  );
 
   useEffect(() => {
     dispatch(fetchWorkOrders());

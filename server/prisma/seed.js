@@ -6,12 +6,10 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("Seeding car shop services and work orders...");
 
-  // Delete in the right order to avoid foreign key issues
   await prisma.workOrderItem.deleteMany();
   await prisma.workOrder.deleteMany();
   await prisma.service.deleteMany();
 
-  // Create services
   const services = await prisma.service.createMany({
     data: [
       { name: "Oil Change", description: "Full synthetic oil change with filter replacement", price: 89.99, inStock: true },
@@ -25,12 +23,10 @@ async function main() {
     ],
   });
 
-  // Fetch created services with IDs
   const allServices = await prisma.service.findMany();
 
   const getServiceId = (name) => allServices.find((s) => s.name === name).id;
 
-  // Create first work order
   const workOrder1 = await prisma.workOrder.create({
     data: {
       customerName: "John Doe",
@@ -45,7 +41,6 @@ async function main() {
     },
   });
 
-  // Create second work order
   const workOrder2 = await prisma.workOrder.create({
     data: {
       customerName: "Jane Smith",

@@ -36,7 +36,6 @@ export default function WorkOrderForm() {
       });
   };
 
-  // calculate total
   const totalPrice = items.reduce(
     (sum, item) => sum + (item.price * (item.quantity || 1)),
     0
@@ -44,7 +43,7 @@ export default function WorkOrderForm() {
 
   return (
     <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-12 pt-40">
-      <h1 className="text-3xl font-bold text-center text-slate-800 dark:text-slate-200 mb-10">
+      <h1 className="text-3xl font-bold text-center text-slate-800 dark:text-slate-100 mb-10">
         Submit a Work Order
       </h1>
 
@@ -59,12 +58,10 @@ export default function WorkOrderForm() {
                 key={item.id}
                 className="flex justify-between items-center p-3 rounded-sm shadow-md bg-white dark:bg-slate-600"
               >
-                {/* Item name */}
                 <span className="font-medium text-slate-900 dark:text-slate-100">
                   {item.name}
                 </span>
 
-                {/* Price and remove button */}
                 <div className="flex items-center space-x-3">
                   <span className="font-medium text-slate-900 dark:text-slate-100">
                     ${item.price}
@@ -81,7 +78,6 @@ export default function WorkOrderForm() {
             ))}
           </ul>
 
-          {/* Total price */}
           <div className="text-right font-semibold text-slate-900 dark:text-slate-100 mt-4">
             Total: ${totalPrice.toFixed(2)}
           </div>

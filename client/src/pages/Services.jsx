@@ -30,8 +30,8 @@ export default function Services() {
   };
 
   return (
-    <div className="bg-gray-50 mt-30 dark:bg-slate-650 px-4 md:px-8 lg:px-10 py-10 2xl:px-60">
-      <h1 className="text-3xl font-bold mb-10 text-center dark:text-slate-100">
+    <div className="bg-gray-50 dark:bg-slate-650 px-4 md:px-8 lg:px-10 py-10 2xl:px-60">
+      <h1 className="text-3xl font-bold mb-10 mt-30 text-center dark:text-slate-100">
         Explore Our Services
       </h1>
       <p className="text-center text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10">

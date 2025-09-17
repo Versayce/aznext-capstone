@@ -7,7 +7,7 @@ import AdminWorkOrders from "./pages/AdminWorkOrders";
 
 export default function App() {
   return (
-    <div className="bg-gray-50 dark:bg-slate-650 transition-colors duration-300">
+    <div className="bg-gray-50 dark:bg-slate-650 transition-colors duration-800">
       <Navbar />
       
         <Routes>

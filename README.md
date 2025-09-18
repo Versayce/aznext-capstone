@@ -8,13 +8,13 @@
 # How To Run:
 * Configure ENV with docker vars:
   
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=capstone_user
-DB_PASSWORD=capstone_pass
-DB_NAME=capstone_db
+- DB_HOST=localhost
+- DB_PORT=5432
+- DB_USER=capstone_user
+- DB_PASSWORD=capstone_pass
+- DB_NAME=capstone_db
 
-DATABASE_URL="postgresql://capstone_user:capstone_pass@localhost:5432/capstone_db?schema=public"
+- DATABASE_URL="postgresql://capstone_user:capstone_pass@localhost:5432/capstone_db?schema=public"
 
 
 * Run npm i in client and server folders to install dependancies.

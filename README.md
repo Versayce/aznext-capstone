@@ -6,7 +6,7 @@
 ### Additional requirements installed via "npm i"
 
 # How To Run:
-* Configure ENV with docker vars:
+* Configure ENV with docker vars (adjust naming for your project purposes):
   
   - DB_HOST=localhost
   - DB_PORT=5432

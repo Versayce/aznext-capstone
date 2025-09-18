@@ -5,7 +5,7 @@
    
 ### Additional requirements installed via "npm i"
 
-# How To Run
+# How To Run:
 * Run npm i to install dependancies.
 * Start docker desktop and run "npm run dockerdb" in project root.
 * cd to client folder and run "npm run dev".

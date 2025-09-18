@@ -15,6 +15,7 @@
   - DB_NAME=capstone_db
   - DATABASE_URL="postgresql://capstone_user:capstone_pass@localhost:5432/capstone_db?schema=public"
 
+  - /Docker/docker-compose.yml contains these key values.
 
 
 * Run npm i in client and server folders to install dependancies.

@@ -2,6 +2,7 @@
 
 1. Docker Desktop
 2. Node.js
+   
 ## Additional requirements installed via npm i
 
 # How To Run
